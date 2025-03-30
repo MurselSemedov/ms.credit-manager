@@ -1,0 +1,32 @@
+databaseChangeLog:
+  - changeSet:
+      id: Create status_histories table
+      author: Mursal Samadov
+      changes:
+        - createTable:
+            tableName: status_histories
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: status
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_at
+                  type: timestamp
+              - column:
+                  name: update_at
+                  type: timestamp
+              - column:
+                  name: credit_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+            remarks: Table to store information about status_histories
