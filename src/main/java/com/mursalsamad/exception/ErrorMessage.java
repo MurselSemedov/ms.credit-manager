@@ -1,4 +1,4 @@
-package az.ingress.exception;
+package com.mursalsamad.exception;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

@@ -1,3 +1,3 @@
-package az.ingress.exception;
+package com.mursalsamad.exception;
 
 public record ErrorResponse (String message) {}

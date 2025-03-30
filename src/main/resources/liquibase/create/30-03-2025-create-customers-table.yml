@@ -1,0 +1,38 @@
+databaseChangeLog:
+  - changeSet:
+      id: Create customers table
+      author: Mursal Samadov
+      changes:
+        - createTable:
+            tableName: customers
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: pin
+                  type: varchar(16)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: full_name
+                  type: varchar(40)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: phone_number
+                  type: varchar(30)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_at
+                  type: timestamp
+              - column:
+                  name: update_at
+                  type: timestamp
+
+            remarks: Table to store information about customers

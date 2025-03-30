@@ -1,4 +1,4 @@
-package az.ingress;
+package com.mursalsamad;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

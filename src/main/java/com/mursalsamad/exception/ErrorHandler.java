@@ -1,4 +1,4 @@
-package az.ingress.exception;
+package com.mursalsamad.exception;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import static az.ingress.exception.ErrorMessage.UNEXPECTED_ERROR;
+import static com.mursalsamad.exception.ErrorMessage.UNEXPECTED_ERROR;
 import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
 import static org.springframework.http.HttpStatus.METHOD_NOT_ALLOWED;
 

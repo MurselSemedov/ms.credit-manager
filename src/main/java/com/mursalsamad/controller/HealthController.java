@@ -1,4 +1,4 @@
-package az.ingress.controller;
+package com.mursalsamad.controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
