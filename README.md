@@ -7,6 +7,12 @@
 
 ### Run
 
+```shell postgres
+docker-compose up
+```
+```shell postgres_show
+docker exec -it my_postgres_db psql -U mursal -d carsales
+```
 ```shell script
 $ java -jar change.my.name.jar
 ```
