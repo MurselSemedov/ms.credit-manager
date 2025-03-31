@@ -1,14 +1,14 @@
 databaseChangeLog:
   - changeSet:
-      id: Create credits table
+      id: 202531031950
       author: Mursal Samadov
       changes:
         - createTable:
-            tableName: credits
+            tableName: offers
             columns:
               - column:
                   name: id
-                  type: bigint
+                  type: BIGINT
                   autoIncrement: true
                   constraints:
                     primaryKey: true
@@ -34,30 +34,20 @@ databaseChangeLog:
                   constraints:
                     nullable: false
               - column:
-                  name: requested_amount
-                  type: numeric(16,2)
-                  constraints:
-                    nullable: false
-              - column:
-                  name: status
-                  type: varchar(15)
-                  constraints:
-                    nullable: false
-              - column:
-                  name: check_date
-                  type: timestamp
-                  constraints:
-                    nullable: false
+                  name: accepted
+                  type: boolean
               - column:
                   name: created_at
                   type: timestamp
+                  defaultValue: now()
               - column:
-                  name: update_at
+                  name: updated_at
                   type: timestamp
               - column:
-                  name: customer_id
+                  name: credit_id
                   type: bigint
                   constraints:
+                    foreignKeyName: fk_offers_credits
+                    references: credits(id)
                     nullable: false
-
-            remarks: Table to store information about credits
+            remarks: Table to store information about offers

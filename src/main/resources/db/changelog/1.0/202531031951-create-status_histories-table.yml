@@ -1,6 +1,6 @@
 databaseChangeLog:
   - changeSet:
-      id: Create status_histories table
+      id: 202531031951
       author: Mursal Samadov
       changes:
         - createTable:
@@ -8,25 +8,28 @@ databaseChangeLog:
             columns:
               - column:
                   name: id
-                  type: bigint
+                  type: BIGINT
                   autoIncrement: true
                   constraints:
                     primaryKey: true
                     nullable: false
               - column:
                   name: status
-                  type: varchar(20)
+                  type: varchar(32)
                   constraints:
                     nullable: false
               - column:
                   name: created_at
                   type: timestamp
+                  defaultValue: now()
               - column:
-                  name: update_at
+                  name: updated_at
                   type: timestamp
               - column:
                   name: credit_id
-                  type: bigint
+                  type: BIGINT
                   constraints:
+                    foreignKeyName: fk_status_histories_credits
+                    references: credits(id)
                     nullable: false
             remarks: Table to store information about status_histories

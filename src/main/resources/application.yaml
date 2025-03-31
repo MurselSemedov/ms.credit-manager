@@ -3,18 +3,9 @@ server:
 
 spring:
   datasource:
-    driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://localhost:5432/creditmanager
     username: mursal
     password: mursal123
   jpa:
-    hibernate:
-      ddl-auto: none
     show-sql: true
     open-in-view: false
-  liquibase:
-    change-log: 'classpath:liquibase/changelog-master.yml'
-logging:
-  level:
-    org.springframework.orm.jpa: DEBUG
-    org.springframework.transaction: DEBUG

@@ -1,11 +1,20 @@
 package com.mursalsamad.dao.entity;
-
 import com.mursalsamad.model.enums.CreditStatus;
-import lombok.*;
-
-import javax.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+import javax.persistence.Entity;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import java.time.LocalDateTime;
-
+import java.util.Objects;
 import static javax.persistence.EnumType.STRING;
 import static javax.persistence.FetchType.LAZY;
 import static javax.persistence.GenerationType.IDENTITY;
@@ -13,7 +22,6 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Entity
 @Table(name = "status_histories")
 @Builder
-@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 @Setter
@@ -22,15 +30,23 @@ public class StatusHistoryEntity {
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
-    private long id;
+    private Long id;
     @Enumerated(STRING)
-    @Column(nullable = false)
     private CreditStatus status;
+    @CreationTimestamp
     private LocalDateTime createdAt;
+    @UpdateTimestamp
     private LocalDateTime updatedAt;
     @ManyToOne(fetch = LAZY)
-    @JoinColumn(nullable = false)
-    @ToString.Exclude
     private CreditEntity credit;
 
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        StatusHistoryEntity that = (StatusHistoryEntity) o;
+        return Objects.equals(id, that.id);
+    }
+
+    public int hashCode() {
+        return Objects.hashCode(id);
+    }
 }
