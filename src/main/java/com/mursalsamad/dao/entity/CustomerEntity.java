@@ -1,4 +1,5 @@
 package com.mursalsamad.dao.entity;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -6,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -14,8 +16,7 @@ import javax.persistence.Table;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
-import static javax.persistence.CascadeType.MERGE;
-import static javax.persistence.CascadeType.PERSIST;
+
 import static javax.persistence.GenerationType.IDENTITY;
 
 @Entity
@@ -38,7 +39,7 @@ public class CustomerEntity {
     private LocalDateTime createdAt;
     @UpdateTimestamp
     private LocalDateTime updatedAt;
-    @OneToMany(mappedBy = "customer",cascade = {PERSIST,MERGE})
+    @OneToMany(mappedBy = "customer")
     private List<CreditEntity> credits;
 
     public boolean equals(Object o) {
