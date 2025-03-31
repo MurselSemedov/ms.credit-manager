@@ -14,6 +14,14 @@ public class CustomerMapper {
                 .build();
     }
 
+    public static CustomerEntity buildCustomerEntity(CustomerResponse response){
+        return CustomerEntity.builder()
+                .pin(response.getPin())
+                .fullName(response.getFullName())
+                .phoneNumber(response.getPhoneNumber())
+                .build();
+    }
+
     public static CustomerResponse mapCustomerEntityToDto(CustomerEntity entity){
         return CustomerResponse.builder()
                 .pin(entity.getPin())
@@ -21,4 +29,6 @@ public class CustomerMapper {
                 .phoneNumber(entity.getPhoneNumber())
                 .build();
     }
+
+
 }

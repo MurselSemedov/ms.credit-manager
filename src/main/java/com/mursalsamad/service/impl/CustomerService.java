@@ -1,8 +1,7 @@
 package com.mursalsamad.service.impl;
 
+import com.mursalsamad.dao.entity.CustomerEntity;
 import com.mursalsamad.dao.repository.CustomerRepository;
-import com.mursalsamad.exception.ErrorMessage;
-import com.mursalsamad.exception.ErrorResponse;
 import com.mursalsamad.exception.NotFoundException;
 import com.mursalsamad.model.request.SaveCustomerRequest;
 import com.mursalsamad.model.response.CustomerResponse;
@@ -30,4 +29,12 @@ public class CustomerService implements ICustomerService {
                 .orElseThrow(() -> new NotFoundException(String.format(NO_DATA_FOUND.getMessage(),"pin:"+pin))));
     }
 
+    public CustomerResponse getById(Long id){
+        return mapCustomerEntityToDto(fetchCustomerIfExist(id));
+    }
+
+    private CustomerEntity fetchCustomerIfExist(Long id){
+        return customerRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException(String.format(NO_DATA_FOUND.getMessage(),"id:" + id)));
+    }
 }
