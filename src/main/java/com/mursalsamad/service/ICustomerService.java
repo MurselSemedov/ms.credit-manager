@@ -7,7 +7,7 @@ public interface ICustomerService {
 
     void saveCustomer(SaveCustomerRequest request);
 
-    CustomerResponse findByPin(String pin);
+//    CustomerResponse findByPin(String pin);
 
     CustomerResponse getById(Long id);
 }
