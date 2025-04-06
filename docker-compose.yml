@@ -1,0 +1,16 @@
+version: "3.8"
+services:
+  postgres:
+    image: postgres:latest
+    container_name: credit_manager
+    restart: always
+    environment:
+      POSTGRES_USER: mursal
+      POSTGRES_PASSWORD: mursal123
+      POSTGRES_DB: creditmanager
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+volumes:
+  pg_data:

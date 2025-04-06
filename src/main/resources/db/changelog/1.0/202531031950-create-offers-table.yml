@@ -1,0 +1,53 @@
+databaseChangeLog:
+  - changeSet:
+      id: 202531031950
+      author: Mursal Samadov
+      changes:
+        - createTable:
+            tableName: offers
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: amount
+                  type: numeric(16,2)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: term
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: interest
+                  type: numeric(16,2)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: monthly_payment
+                  type: numeric(16,2)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: accepted
+                  type: boolean
+              - column:
+                  name: created_at
+                  type: timestamp
+                  defaultValue: now()
+              - column:
+                  name: updated_at
+                  type: timestamp
+              - column:
+                  name: credit_id
+                  type: bigint
+                  constraints:
+                    foreignKeyName: fk_offers_credits
+                    references: credits(id)
+                    nullable: false
+            remarks: Table to store information about offers

@@ -1,7 +1,26 @@
 server:
-  port: 8080
+  port: 8081
 
-logging:
-  level:
-    org.springframework.orm.jpa: DEBUG
-    org.springframework.transaction: DEBUG
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/creditmanager
+    username: mursal
+    password: mursal123
+  jpa:
+    show-sql: true
+    open-in-view: false
+  rabbitmq:
+    port: 5672
+    listener:
+      direct:
+        retry:
+          enabled: true
+          max-attempts: 5
+          initial-interval: 3s
+          multiplier: 5
+          max-interval: 5s
+        missing-queues-fatal: false
+rabbitmq:
+  queue:
+    customer: customer
+    customer-dl: customerDL

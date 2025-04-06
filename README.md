@@ -1,14 +1,20 @@
-## change.my.name
+## credit-manager
 
-### Table of Contents
+### ![creditmanager - public.png](creditmanager%20-%20public.png)
 
 - [Run](#Run)
 - [Tech stack](#Tech-stack)
 
 ### Run
 
+```shell postgres
+docker-compose up
+```
+```shell postgres_show
+docker exec -it my_postgres_db psql -U mursal -d carsales
+```
 ```shell script
-$ java -jar change.my.name.jar
+$ java -jar ms.credit-manager.jar
 ```
 
 ### Tech stack
