@@ -7,12 +7,13 @@ import com.mursalsamad.model.response.CustomerResponse;
 
 import static com.mursalsamad.mapper.CustomerMapper.buildCustomerEntity;
 
-public class CreditMapper {
+public enum CreditMapper {
 
+    CREDIT_MAPPER;
 
-    public static CreditEntity buildCreditEntity(SaveCreditRequest request, CustomerResponse response){
+    public CreditEntity buildCreditEntity(SaveCreditRequest request, CustomerResponse response,Long customerId){
         var customer = buildCustomerEntity(response);
-        customer.setId(request.getCustomerId());
+        customer.setId(customerId);
         return CreditEntity.builder()
                 .amount(request.getAmount())
                 .term(request.getTerm())
@@ -23,7 +24,7 @@ public class CreditMapper {
                 .build();
     }
 
-    public static CreditResponse mapCreditEntityToDto(CreditEntity creditEntity){
+    public CreditResponse mapCreditEntityToDto(CreditEntity creditEntity){
         return CreditResponse.builder()
                 .amount(creditEntity.getAmount())
                 .requestedAmount(creditEntity.getRequestedAmount())
@@ -32,7 +33,6 @@ public class CreditMapper {
                 .customerFullName(creditEntity.getCustomer().getFullName())
                 .interest(creditEntity.getInterest())
                 .status(creditEntity.getStatus().name())
-                .term(creditEntity.getTerm())
                 .term(creditEntity.getTerm())
                 .build();
     }

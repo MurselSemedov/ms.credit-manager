@@ -1,31 +1,31 @@
-package com.mursalsamad.service.impl;
+package com.mursalsamad.service.concrete;
 import com.mursalsamad.dao.repository.CreditRepository;
-import com.mursalsamad.mapper.CreditMapper;
 import com.mursalsamad.model.request.SaveCreditRequest;
 import com.mursalsamad.model.response.CreditResponse;
-import com.mursalsamad.service.ICreditService;
-import com.mursalsamad.service.ICustomerService;
+import com.mursalsamad.service.abstraction.CreditService;
+import com.mursalsamad.service.abstraction.CustomerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import static com.mursalsamad.mapper.CreditMapper.buildCreditEntity;
+
+import static com.mursalsamad.mapper.CreditMapper.CREDIT_MAPPER;
 import static com.mursalsamad.mapper.StatusHistoryMapper.buildStatusHistoryEntity;
 import static com.mursalsamad.model.enums.CreditStatus.DRAFT;
 
 @Service
 @RequiredArgsConstructor
-public class CreditService implements ICreditService {
+public class CreditServiceHandler implements CreditService {
 
     private final CreditRepository creditRepository;
-    private final ICustomerService customerService;
+    private final CustomerService customerService;
 
     @Transactional
-    public void saveCredit(SaveCreditRequest request){
-        var customer = customerService.getById(request.getCustomerId());
-        var credit = buildCreditEntity(request,customer);
+    public void saveCredit(SaveCreditRequest request,Long customerId){
+        var customer = customerService.getById(customerId);
+        var credit = CREDIT_MAPPER.buildCreditEntity(request,customer,customerId);
         credit.setStatus(DRAFT);
         credit.setCheckDate(LocalDateTime.now().plusDays(2L));
         var statusHistory = buildStatusHistoryEntity(credit);
@@ -35,6 +35,6 @@ public class CreditService implements ICreditService {
 
     public List<CreditResponse> getAllCreditByStatus(String status){
         var creditList = creditRepository.findAllByStatus(status);
-        return creditList.stream().map(CreditMapper::mapCreditEntityToDto).toList();
+        return creditList.stream().map(CREDIT_MAPPER::mapCreditEntityToDto).toList();
     }
 }

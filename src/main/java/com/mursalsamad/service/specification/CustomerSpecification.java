@@ -25,7 +25,8 @@ public class CustomerSpecification implements Specification<CustomerEntity> {
                 .addWhenNullable(criteria.getPin(),
                         pin -> criteriaBuilder.equal(root.get("pin"),pin))
                 .addWhenNullable(criteria.getPhoneNumber(),
-                        phoneNumber -> criteriaBuilder.equal(root.get("phoneNumber"),phoneNumber))
+                        phoneNumber -> criteriaBuilder.equal(root.get("phoneNumber"),
+                                phoneNumber))
                 .build();
         return criteriaBuilder.and(predicates);
     }
